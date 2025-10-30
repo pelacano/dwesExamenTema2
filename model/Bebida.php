@@ -1,6 +1,6 @@
 <?php
 // Clase Bebida que hereda de Artículo
-require_once 'Articulo.php';
+
 
 class Bebida extends Articulo {
     public $tamano;
