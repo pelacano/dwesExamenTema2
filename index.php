@@ -37,7 +37,9 @@ $ubicaciones = [
 $pedido = ["Ensalada César", "Pizza Margarita", "Café"];
 
 // TODO Filtrar platos por disponibilidad, guardando en variable $disponibles
-$disponibles =
+$disponibles = array_filter($menu, function($item) {
+    return $item->disponibilidad;
+});
 
 //////////////////////////////
 //        FUNCIONES         //
@@ -45,7 +47,9 @@ $disponibles =
 
 // TODO Función para imprimir una lista de artículos con nombre y precio
 function imprimirListaArticulos($articulos){
-
+    foreach ($articulos as $articulo) {
+        echo "<li>{$articulo->nombre} - {$articulo->precio} €</li>";
+    }
 }
 
 // TODO Función para imprimir un pedido
