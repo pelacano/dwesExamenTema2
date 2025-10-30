@@ -54,13 +54,51 @@ function imprimirListaArticulos($articulos){
 
 // TODO Función para imprimir un pedido
 function imprimirPedido($pedido, $menu) {
+function imprimirPedido($pedido, $menu) {
+    echo "<table border='1' cellpadding='8'>";
+    echo "<tr><th>Artículo</th><th>Precio (€)</th></tr>";
+    $total = 0;
+    foreach ($pedido as $nombrePedido) {
+        $encontrado = false;
+        foreach ($menu as $item) {
+            if ($item->nombre === $nombrePedido) {
+                $encontrado = true;
+                if ($item->disponibilidad) {
+                    echo "<tr><td>{$item->nombre}</td><td>{$item->precio}</td></tr>";
+                    $total += $item->precio;
+                } else {
+                    echo "<tr><td>{$item->nombre}</td><td>No disponible</td></tr>";
+                }
+              break;
+            }
+        }
+        if (!$encontrado) {
+            echo "<tr><td>{$nombrePedido}</td><td>No encontrado en el menú</td></tr>";
+        }
+    }
+    echo "<tr><th>Total</th><th>{$total} €</th></tr>";
+    echo "</table>";
+            }
+        }
 
-}
 
 // TODO Función para imprimir las ubicaciones
 function imprimirUbicaciones($ubicaciones) {
-
+    echo "<table border='1' cellpadding='8'>";
+    echo "<tr><th>Ubicación</th><th>Dirección</th><th>Teléfono</th><th>Horario</th></tr>";
+    foreach ($ubicaciones as $nombre => $datos) {
+        echo "<tr>
+                <td>{$nombre}</td>
+                <td>{$datos['direccion']}</td>
+                <td>{$datos['telefono']}</td>
+                <td>{$datos['horario']}</td>
+              </tr>";
+    }
+    echo "</table>";
 }
+
+
+
 
 ?>
 
